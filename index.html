@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fullscreen Image Example</title>
+<style>
+  /* Optional CSS to ensure the image displays properly in fullscreen mode */
+  .fullscreen:-webkit-full-screen {
+    width: auto !important;
+    height: auto !important;
+    margin: auto !important;
+    background-color: black; /* Optional: adds a black background */
+  }
+  .fullscreen:-moz-full-screen {
+    width: auto !important;
+    height: auto !important;
+    margin: auto !important;
+    background-color: black;
+  }
+  .fullscreen:-ms-fullscreen {
+    width: auto !important;
+    height: auto !important;
+    margin: auto !important;
+    background-color: black;
+  }
+  .fullscreen:fullscreen {
+    width: auto !important;
+    height: auto !important;
+    margin: auto !important;
+    background-color: black;
+  }
+  
+  /* Basic styling for the image when not in fullscreen */
+  #theImage {
+    width: 400px; /* or any initial size */
+    height: auto;
+    cursor: pointer; /* indicates it's clickable */
+  }
+</style>
+</head>
+<body>
+
+  <h1>Click the image below to view full screen:</h1>
+  
+  <!-- The image element with an onclick event handler -->
+  <img id="theImage" class="fullscreen" src="diag.png" alt="Description of image" onclick="makeFullScreen()">
+
+  <script>
+    function makeFullScreen() {
+      var imgObj = document.getElementById("theImage");
+      
+      // Use the specification method before using prefixed versions for cross-browser compatibility
+      if (imgObj.requestFullscreen) {
+        imgObj.requestFullscreen();
+      } else if (imgObj.msRequestFullscreen) { // IE11
+        imgObj.msRequestFullscreen();
+      } else if (imgObj.mozRequestFullScreen) { // Firefox
+        imgObj.mozRequestFullScreen();
+      } else if (imgObj.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        imgObj.webkitRequestFullscreen();
+      } else {
+        console.log("Fullscreen API is not supported");
+      }
+    }
+  </script>
+
+</body>
+</html>
